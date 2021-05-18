@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+
+{% block index %}
+<div class="container">
+    <div class="list-group mt-5">
+        <a href="{{ url_for ('restful') }}"
+            class=" text-center list-group-item list-group-item-action list-group-item-dark mb-2">
+            Daftar data endpoint yang tersedia
+        </a>
+
+        <!-- Awal menu -->
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item mb-3" role="presentation">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#provinsi" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Provinsi</a>
+            </li>
+            <li class="nav-item mb-3" role="presentation">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#kabupaten" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Kabupaten</a>
+            </li>
+            <li class="nav-item mb-3" role="presentation">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#distrik" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Distrik</a>
+            </li>
+            <li class="nav-item mb-3" role="presentation">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#kampung" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Kampung</a>
+            </li>
+        </ul>
+        <!-- Akhir Menu -->
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Awal Content Provinsi -->
+            <div class="tab-pane fade show active" id="provinsi" role="tabpanel" aria-labelledby="home-tab">
+                <!-- GET -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/provinsi"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/provinsi/<id>"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <!-- POST -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-success" style="width: 90px;">POST</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/provinsi"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <!-- Akhir Provinsi -->
+
+
+            <!-- Awal Content Kabupaten -->
+            <div class="tab-pane fade" id="kabupaten" role="tabpanel" aria-labelledby="profile-tab">
+                <!-- GET -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kabupaten"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kabupaten/<id>"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <!-- POST -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-success" style="width: 90px;">POST</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kabupaten"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <!-- Akhir Kabupaten -->
+
+            <!-- Awal Content Distrik -->
+            <div class="tab-pane fade" id="distrik" role="tabpanel" aria-labelledby="profile-tab">
+                <!-- GET -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/distrik"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/distrik/<id>"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <!-- POST -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-success" style="width: 90px;">POST</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/distrik"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <!-- Akhir Distrik -->
+
+            <!-- Awal Content Kampung -->
+            <div class="tab-pane fade" id="kampung" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kampung"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="width: 90px;">GET</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kampung/<id>"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <!-- POST -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-success" style="width: 90px;">POST</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kampung"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <!-- Akhir Kampung -->
+
+                <!-- PUT/PATCH -->
+                <!-- <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary" style="width: 90px;">PUT</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kampung/<id>"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div> -->
+
+                <!-- DELETE -->
+                <!-- <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" style="width: 90px;">DELETE</button>
+                    </div>
+                    <input type="text" class="form-control" value="localhost:5000/api/kampung/<id>"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock index %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block index %}
+<div class="container">
+  <table class="table mt-5">
+    <thead>
+      {% if judul == "Provinsi" %}
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nama Provinsi</th>
+      </tr>
+      {% elif judul == "Kabupaten" %}
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nama Kabupaten</th>
+        <th scope="col">Nama Provinsi</th>
+      </tr>
+      {% elif judul == "Distrik" %}
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nama Distrik</th>
+        <th scope="col">Nama Kabupaten</th>
+      </tr>
+      {% elif judul == "Kampung" %}
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nama Kampung</th>
+        <th scope="col">Nama Distrik</th>
+      </tr>
+      {% endif %}
+    </thead>
+    <tbody>
+      {% for data in data %}
+        {% if judul == "Provinsi" %} 
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td scope="row">{{data.nama_provinsi}}</td>
+        </tr>
+        
+        {% elif judul == "Kabupaten" %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td scope="row">{{data.nama_kabupaten}}</td>
+          <td scope="row">{{data.provinsi}}</td>
+        </tr>
+        {% elif judul == "Distrik" %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td scope="row">{{data.nama_distrik}}</td>
+          <td scope="row">{{data.kabupaten}}</td>
+        </tr>
+        {% elif judul == "Kampung" %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td scope="row">{{data.nama_kampung}}</td>
+          <td scope="row">{{data.distrik}}</td>
+        </tr>
+        {% endif %}
+      {% endfor %} 
+    </tbody>
+  </table>
+</div>
+{% endblock index %}

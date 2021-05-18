@@ -14,10 +14,10 @@ class Kabupaten(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama_kabupaten = db.Column(db.String(100), nullable=False)
     provinsi = db.Column(db.String(100), db.ForeignKey('provinsi.id'), nullable=False)
-    distrik_id = db.relationship('Distrik', backref='distrik', lazy=True)
+    distrik = db.relationship('Distrik', backref='distrik', lazy=True)
 
     def __repr__(self):
-        return (f"Distrik('{self.nama_kabupaten}')")
+        return f"{self.nama_kabupaten}"
 
 class Distrik(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,15 +26,15 @@ class Distrik(db.Model):
     kampung = db.relationship('Kampung', backref='kampung', lazy=True)
 
     def __repr__(self):
-        return (f"Kampung({self.nama_distrik}')")
+        return f"{self.nama_distrik}"
 
 class Kampung(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nama_kampung = db.Column(db.String(100), nullable=False)
-    distrik = db.Column(db.Integer, db.ForeignKey('distrik.id'), nullable=False)
+    distrik = db.Column(db.String(100), db.ForeignKey('distrik.id'), nullable=False)
     
     def __repr__(self):
-        return (f"Kampung({self.nama_distrik}')")
+        return f"{self.nama_distrik}"
 
 class ProvinsiSchema(ma.Schema):
     class Meta:
@@ -103,11 +103,30 @@ class DistrikResource(Resource):
     
     def post(self):
         data = request.json
-        data_kabupaten = Kabupaten.query.filter_by(id=data['kabupaten']).first()
-        new_distrik = Distrik(nama_distrik=data['nama_distrik'], distrik=data_kabupaten)
+        data_kabupaten = Kabupaten.query.get(data['kabupaten'])
+        print(data_kabupaten)
+        new_distrik = Distrik(nama_distrik=data['nama_distrik'], kabupaten=data_kabupaten.nama_kabupaten)
         db.session.add(new_distrik)
         db.session.commit()
         return distrik_schema.dump(new_distrik)
+
+class DistriksResource(Resource):
+    def get(self, pk):
+        return distrik_schema.dump(Distrik.query.get_or_404(pk))
+
+    def put(self, pk):
+        data = request.json
+        update_distrik = Distrik.query.get_or_404(pk)
+        if 'nama_distrik' in data:
+            update_distrik.nama_distrik = data['nama_distrik']
+        db.session.commit()
+        return distrik_schema.dump(update_distrik)
+
+    def delete(self, pk):
+        distrik = Distrik.query.get_or_404(pk)
+        db.session.delete(distrik)
+        db.session.commit()
+        return "Berhasil dihapus", 204
 
 class KampungResource(Resource):
     def get(self):
@@ -115,8 +134,9 @@ class KampungResource(Resource):
     
     def post(self):
         data = request.json
-        data_distrik = Distrik.query.filter_by(id=data['distrik_id']).first()
-        new_kampung = Kampung(nama_kampung=data['nama_kampung'], distrik=data_distrik)
+        # data_distrik = Distrik.query.filter_by(id=data['distrik_id']).first()
+        data_distrik = Distrik.query.get(data['distrik'])
+        new_kampung = Kampung(nama_kampung=data['nama_kampung'], distrik=data_distrik.nama_distrik)
         db.session.add(new_kampung)
         db.session.commit()
         return kampung_schema.dump(new_kampung)
