@@ -5,5 +5,5 @@
 
 ![Current Result Knip Tech - RESTFul API](./demo.png)
 
-## Build by : 
+## Support by : 
 * [Theis Andatu](https://theisandatu.com)
